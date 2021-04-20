@@ -5,7 +5,7 @@ export default function DessertCard (props) {
   return(
     <View style={style.Card}>
       <View style={style.containerImg}>
-        <Image style={style.image} source={require(`../../assets/${props.imageUrl}`)} />
+        {/* <Image style={style.image} source={require(`../../assets/${props.imageUrl}`)} /> */}
       </View>
       <Text style={style.text}> {props.name} </Text>
     </View>
