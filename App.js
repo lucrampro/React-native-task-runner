@@ -1,22 +1,23 @@
+
 import React from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import Dessert from "./src/screens/Dessert_informations/index"
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Home from './src/screens/Home/index';
-import Test from './src/screens/Test/index'
+// import Test from './src/screens/Test/index'
+import Dessert from "./src/screens/Dessert_informations/index"
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <NavigationContainer>
+      <NavigationContainer> 
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Test" component={Test} />
-        </Stack.Navigator>
+          <Stack.Screen  name="Home" component={Home} />
+          <Stack.Screen name="Dessert" component={Dessert} />
+      </Stack.Navigator>
       </NavigationContainer>
     </View>
   );
@@ -24,7 +25,9 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    paddingTop: 100,
+    flex: 1,
+    paddingTop: 30,
   },
 });
+
+

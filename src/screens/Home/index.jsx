@@ -50,6 +50,7 @@ const style = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
+
   map: {
     height: 400,
     width: '100%',
@@ -61,13 +62,10 @@ export default function Home ({ navigation }) {
 
   const item_dessert = ({ item }) => (
     <DessertCard name={item.name} imageUrl={item.imageUrl}/>
-  );
-
-
-
+  ); 
 
   return (
-    <View >
+    <View style={{ paddingHorizontal: 10, paddingTop: 10}}>
       <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
       <Text style={style.titleSection}> Liste des Desserts </Text>
 
@@ -76,7 +74,7 @@ export default function Home ({ navigation }) {
         <Text style={style.titleSection}> Carte </Text>
         <Button
         title="Go to Details"
-        onPress={() => navigation.navigate('Test')}
+        onPress={() => navigation.navigate('Dessert')}
       />
         <MapView style={style.map} initialRegion={{
           latitude: 37.78825,
