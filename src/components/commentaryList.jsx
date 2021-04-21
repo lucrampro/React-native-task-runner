@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 14,
     padding: 4,
-    "paddingLeft": "20px",
-    "paddingRight": "20px",
+    "paddingLeft": 20,
+    "paddingRight": 20,
     backgroundColor: "#99DBAF",
     flexDirection: "row",
     flex: 2,
@@ -34,7 +34,7 @@ export default function ({ data = [
 
   return (
    <View style={{ paddingTop: 18 }}>
-     <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: "10px", paddingTop: "10px"}}>Commentaires</Text>
+     <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: 10, paddingTop: 10}}>Commentaires</Text>
      <FlatList
       data={data}
       style={styles.card} 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, CheckBox, Image, Button } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 14,
     padding: 4,
-    "paddingLeft": "20px",
-    "paddingRight": "20px",
+    "paddingLeft": 20,
+    "paddingRight": 20,
     backgroundColor: "#99DBAF",
     flexDirection: "row",
     flex: 2,
@@ -17,7 +17,10 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
   },
-  checkbox: {},
+  checkbox: {
+    height: 20, 
+    width: 20,
+  },
   item: {
     width: "100%",
     padding: 10,
@@ -26,8 +29,8 @@ const styles = StyleSheet.create({
   },
   cta: {
     color: "#6A9FA0",
-    paddingTop: "10px",
-    paddingBottom: "10px",
+    paddingTop: 10,
+    paddingBottom: 10,
   }
 });
 
@@ -44,6 +47,18 @@ export default function ({ data = [
   { key: '200g de lait' },
 ]}) {
 
+const [currentData, setCurrentData] = useState([])
+
+  useEffect(()=> {
+    setCurrentData(data.map((val)=>{
+      return {
+        ...val,
+        value: true,
+      }
+    })) 
+  }, [])
+
+
   function addIngredient () {
     console.log("add ingredient")
   }
@@ -53,20 +68,20 @@ export default function ({ data = [
      <Text style={{ fontSize: 18, fontWeight: "bold"}}>Listes des ingrédients</Text>
      <Text style={styles.cta} onPress={addIngredient} >Ajouter un ingrédient</Text>
      <FlatList
-      data={data}
+      data={currentData}
       style={styles.card} 
       renderItem={({ item }) => {
         return (
           <View style={styles.ingredient}>
             <View style={{ justifyContent: "center", flexDirection: "column" }}>
-              <CheckBox style={styles.checkbox} ></CheckBox>
+              <CheckBox style={styles.checkbox} value={true}></CheckBox>
             </View>
             <Text style={styles.item}>{item.key}</Text>
             <View style={{
-              justifyContent: "space-between", flexDirection: "row", width: "70px", alignItems: "center"
+              justifyContent: "space-between", flexDirection: "row", width: 70, alignItems: "center"
             }}>
-              <Image style={styles.icon} source={require('../assets/modifier-icon.svg')}></Image>
-              <Image style={styles.icon} source={require('../assets/remove-icon.svg')} ></Image>
+              <Image style={styles.icon} source={require('../../assets/modifier-icon.svg')}></Image>
+              <Image style={styles.icon} source={require('../../assets/remove-icon.svg')} ></Image>
             </View>
           </View>
         )

@@ -22,7 +22,7 @@ export default function ({ data = [
       renderItem={({ item }) => {
         return (
           <View> 
-            <Text style={{paddingTop: "10px"}}>{item.key}</Text>
+            <Text style={{paddingTop: 10}}>{item.key}</Text>
           </View>
         )
       }}

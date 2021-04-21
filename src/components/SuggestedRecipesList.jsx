@@ -5,10 +5,10 @@ const styles = StyleSheet.create({
   item: {
     marginBottom: 14,
     padding: 4,
-    paddingTop: "10px",
-    "paddingRight": "20px",
-    paddingBottom: "10px",
-    "paddingLeft": "20px",
+    paddingTop: 10,
+    "paddingRight": 20,
+    paddingBottom: 10,
+    "paddingLeft": 20,
     backgroundColor: "#F0F0F0",
     flex: 2,
     borderRadius: 10
@@ -45,7 +45,7 @@ export default function ({ data = [
 
   return (
     <View style={{ paddingTop: 18 }}>
-      <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: "4px", paddingTop: "10px" }}>Recettes sugérés</Text>
+      <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: 4, paddingTop: 10 }}>Recettes sugérés</Text>
       <Text style={styles.cta} onPress={addComment} >Ajouter un commentaire</Text>
       <FlatList
         data={data}

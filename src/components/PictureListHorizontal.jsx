@@ -39,7 +39,7 @@ export default function ({ data = [
         horizontal={true}
         renderItem={({ item }) => {
           return (
-            <Image style={styles.image} source={require(`../assets/tarte_au_pomme.png`)} />
+            <Image style={styles.image} source={require(`../../assets/tarte_au_pomme.png`)} />
           )
         }}
       />

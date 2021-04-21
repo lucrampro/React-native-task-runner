@@ -63,6 +63,9 @@ export default function Home ({ navigation }) {
     <DessertCard name={item.name} imageUrl={item.imageUrl}/>
   );
 
+
+
+
   return (
     <View >
       <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
