@@ -1,6 +1,6 @@
 import React from 'react'
 import MapView from 'react-native-maps';
-import { View, Text, StyleSheet, TextInput, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TextInput, FlatList, Button } from 'react-native';
 // components
 import DessertCard from '../../components/dessert_card.jsx'
 
@@ -37,7 +37,7 @@ const data_desert = [
   }
 ];
 
-export default function Home () {
+export default function Home ({ navigation }) {
 
   const item_dessert = ({ item }) => (
     <DessertCard name={item.name} imageUrl={item.imageUrl}/>
@@ -51,6 +51,10 @@ export default function Home () {
       <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_desert} renderItem={item_dessert} keyExtractor={data=> data.id}/>
 
         <Text style={style.titleSection}> Carte </Text>
+        <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Test')}
+      />
         <MapView style={style.map} initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,
