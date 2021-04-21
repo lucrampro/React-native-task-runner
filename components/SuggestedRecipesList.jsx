@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     "paddingLeft": "20px",
     backgroundColor: "#F0F0F0",
     flex: 2,
-    borderRadius: "10px"
+    borderRadius: 10
   },
   cta: {
     color: "#6A9FA0",

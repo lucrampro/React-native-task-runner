@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#99DBAF",
     flexDirection: "row",
     flex: 2,
-    borderRadius: "10px"
+    borderRadius: 10
   },
   icon: {
     width: 28,

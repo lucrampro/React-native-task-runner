@@ -12,8 +12,8 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <View style={styles.container}>
+        <Home/>
       <NavigationContainer> 
-        {/* <Home/> */}
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Test" component={Test} />
