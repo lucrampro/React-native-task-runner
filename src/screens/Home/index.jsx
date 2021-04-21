@@ -37,6 +37,26 @@ const data_desert = [
   }
 ];
 
+const style = StyleSheet.create({
+  inputSearch: {
+    backgroundColor: '#F5F5F5',
+    height: 40,
+    padding: 10
+  },
+
+  titleSection: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  map: {
+    height: 400,
+    width: '100%',
+    borderRadius: 8,
+  },
+})
+
 export default function Home () {
 
   const item_dessert = ({ item }) => (
@@ -59,24 +79,4 @@ export default function Home () {
         }} />
     </View>
   );
-}
-
-const style = StyleSheet.create({
-  inputSearch: {
-    backgroundColor: '#F5F5F5',
-    height: 40,
-    padding: 10
-  },
-
-  titleSection: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  map: {
-    height: 400,
-    width: '100%',
-    borderRadius: 8,
-  },
-});
+} ;
