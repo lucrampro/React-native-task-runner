@@ -3,6 +3,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
+import Dessert from "./src/screens/Dessert_informations"
 import { StyleSheet, Text, View } from 'react-native';
 import Home from './src/screens/Home/index';
 import Test from './src/screens/Test/index'
@@ -24,7 +25,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     padding: 20,
     paddingTop: 100,
