@@ -7,32 +7,32 @@ import DessertCard from '../../components/dessert_card.jsx'
 const data_desert = [
   {
     name: 'tarte au pomme',
-    imageUrl: 'apple.png',
+    imageUrl: require('../../../assets/apple.png'),
     id: '1'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: 'apple.png',
+    imageUrl: require('../../../assets/apple.png'),
     id: '2'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: 'apple.png',
+    imageUrl: require('../../../assets/apple.png'),
     id: '3'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: 'apple.png',
+    imageUrl: require('../../../assets/apple.png'),
     id: '4'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: 'apple.png',
+    imageUrl: require('../../../assets/apple.png'),
     id: '5'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: 'apple.png',
+    imageUrl: require('../../../assets/apple.png'),
     id: '6'
   }
 ];
@@ -48,7 +48,7 @@ export default function Home () {
       <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
       <Text style={style.titleSection}> Liste des Desserts </Text>
 
-      <FlatList horizontal={true} data={data_desert} renderItem={item_dessert} keyExtractor={data=> data.id}/>
+      <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_desert} renderItem={item_dessert} keyExtractor={data=> data.id}/>
 
         <Text style={style.titleSection}> Carte </Text>
         <MapView style={style.map} initialRegion={{
@@ -78,5 +78,5 @@ const style = StyleSheet.create({
     height: 400,
     width: '100%',
     borderRadius: 8,
-  }
+  },
 });

@@ -6,6 +6,7 @@ import Home from './src/screens/Home/index';
 export default function App() {
   return (
     <View style={styles.container}>
+      <Text>Emplacement logo</Text>
       <StatusBar style="auto" />
       <Home/>
     </View>
