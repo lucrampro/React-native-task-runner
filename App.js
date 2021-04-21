@@ -12,13 +12,12 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <View style={styles.container}>
-      <Dessert></Dessert>
-      {/* <Stack.Screen name="Test" component={Dessert} /> */}
-      {/* <NavigationContainer>
-        <Stack.Navigator> */}
-          {/* <Stack.Screen name="Home" component={Home} /> */}
-        {/* </Stack.Navigator> */}
-      {/* </NavigationContainer> */}
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Test" component={Test} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
   );
 }
