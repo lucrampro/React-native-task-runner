@@ -37,34 +37,6 @@ const data_desert = [
   }
 ];
 
-export default function Home ({ navigation }) {
-
-  const item_dessert = ({ item }) => (
-    <DessertCard name={item.name} imageUrl={item.imageUrl}/>
-  );
-
-  return (
-    <View >
-      <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
-      <Text style={style.titleSection}> Liste des Desserts </Text>
-
-      <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_desert} renderItem={item_dessert} keyExtractor={data=> data.id}/>
-
-        <Text style={style.titleSection}> Carte </Text>
-        <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Test')}
-      />
-        <MapView style={style.map} initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }} />
-    </View>
-  );
-}
-
 const style = StyleSheet.create({
   inputSearch: {
     backgroundColor: '#F5F5F5',
@@ -78,9 +50,38 @@ const style = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
+
   map: {
     height: 400,
     width: '100%',
     borderRadius: 8,
   },
-});
+})
+
+export default function Home ({ navigation }) {
+
+  const item_dessert = ({ item }) => (
+    <DessertCard name={item.name} imageUrl={item.imageUrl}/>
+  ); 
+
+  return (
+    <View style={{ paddingHorizontal: 10, paddingTop: 10}}>
+      <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
+      <Text style={style.titleSection}> Liste des Desserts </Text>
+
+      <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_desert} renderItem={item_dessert} keyExtractor={data=> data.id}/>
+
+        <Text style={style.titleSection}> Carte </Text>
+        <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Dessert')}
+      />
+        <MapView style={style.map} initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }} />
+    </View>
+  );
+} ;
