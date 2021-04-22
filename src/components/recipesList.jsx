@@ -4,11 +4,7 @@ import { StyleSheet, Text, View, FlatList, CheckBox, Image, Button } from 'react
 const styles = StyleSheet.create({});
 
 
-export default function ({ data = [
-  { key: 'Préchauffer le four' },
-  { key: 'couper les pommes ' },
-  { key: 'Mettre la confiture sur la pate ' },
-] }) {
+export default function ({ data = [ ] }) {
   function addIngredient() {
     console.log("add ingredient")
   }

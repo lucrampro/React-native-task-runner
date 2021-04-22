@@ -17,27 +17,30 @@ const styles = StyleSheet.create({
 
 export default function () {
 
-  const [dessert, setDessert] = useState({
-    date: ""
-  })
+  const [dessert, setDessert] = useState({ })
 
-  useEffect(() => {
+  useEffect(() => { 
+
+    console.log("ici")
 
     fetch("https://my-json-server.typicode.com/melvinDebot/db-user/db_user?id=1")
       .then((response) => response.json())
       .then((val) => {
         setDessert(val[0])
-      }).catch((e) => console.error) 
+        console.log(val)
+      })
+      .catch((e) => console.error) 
+
   }, [])
 
   return (
     <ScrollView style={styles.container}>
-      {/* <DessertUserDetail date={dessert.date} first_name={dessert['first_name']} name={dessert['name']}></DessertUserDetail> */}
+      <DessertUserDetail date={dessert.date} first_name={dessert['first_name']} name={dessert['name']}></DessertUserDetail>
       <IngredientsList data={dessert.todos} />
-      {/* <PictureListHorizontal data={dessert.slider_img} /> */}
-      {/* <RecipesList data={dessert.recipes} /> */}
-      {/* <SuggestedRecipes data={dessert.comments}/> */}
-      {/* <CommentaryList data={dessert.comments}/> */}
+      <PictureListHorizontal data={dessert.slider_img} />
+      <RecipesList data={dessert.recipes} />
+      <SuggestedRecipes data={dessert.comments}/>
+      <CommentaryList data={dessert.comments}/>
     </ScrollView>
   )
 }
