@@ -19,6 +19,8 @@ export default function () {
 
   const [dessert, setDessert] = useState({ })
 
+    console.log("ici2")
+
   useEffect(() => { 
 
     console.log("ici")

@@ -47,7 +47,6 @@ export default function ({ data = [] }) {
         key: "ingredieant_" + key,
       }
     }))
-    console.log(data)
   }, [data])
 
   function checkedValue({ key }) {
