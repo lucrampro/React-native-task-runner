@@ -6,19 +6,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Home from './src/screens/Home/index';
-// import Test from './src/screens/Test/index'
 import Dessert from "./src/screens/Dessert_informations/index"
 const Stack = createStackNavigator();
-
+import NavigationTabs from './src/components/navigationTabs.jsx'
 export default function App() {
   return (
     <View style={styles.container}>
-      <NavigationContainer> 
-        <Stack.Navigator>
-          <Stack.Screen  name="Home" component={Home} />
-          <Stack.Screen name="Dessert" component={Dessert} />
-      </Stack.Navigator>
-      </NavigationContainer>
+       <NavigationContainer> 
+          <NavigationTabs/>
+      </NavigationContainer> 
     </View>
   );
 }
