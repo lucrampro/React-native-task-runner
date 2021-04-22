@@ -7,7 +7,7 @@ const exampleImage = require('../../assets/apple.png');
 export default function DessertCard (props) {
   
   return(
-    <View style={style.Card}>
+    <View onPress={() => props.navigation.navigate('Dessert')} style={style.Card}>
       <View style={style.containerImg}>
         <Image style={style.image} source={props.imageUrl} />
       </View>
