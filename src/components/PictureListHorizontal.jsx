@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, CheckBox, Image, Button } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -15,31 +16,33 @@ const styles = StyleSheet.create({
 });
 
 
-export default function ({ data = [
-  {
-    key: '1',
-    picture: 'tarte_au_pomme.png'
-  },
-  {
-    key: '1',
-    picture: 'tarte_au_pomme.png'
-  },
-] }) {
+export default function ({ data = [] }) {
 
-  function addIngredient() {
-    console.log("add ingredient")
-  }
+  const [pictures, setPictures] = useState([])
+
+  useEffect(() => {
+    setPictures(data.map((uri, key)=>{
+      return {
+        uri: uri,
+        key
+      }
+    }))
+
+  }, [data])
 
   return (
     <View>
       <Text style={{ fontSize: 18, fontWeight: "bold" }}>Photos du desserts</Text>
       <FlatList
-        data={data}
+        data={pictures}
         styles={styles.container}
         horizontal={true}
         renderItem={({ item }) => {
           return (
-            <Image style={styles.image} source={require(`../../assets/tarte_au_pomme.png`)} />
+            <Image style={styles.image}  
+            source={{
+              uri: item.uri,
+            }} />
           )
         }}
       />
