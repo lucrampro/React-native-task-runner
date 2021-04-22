@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
 });
 
 
-export default function () { 
+export default function ({ first_name, name, date}) { 
   return (
    <View>
      <Text style={styles.title}>Tartes aux pommes</Text> 
-     <View style={{ flexDirection: "row"}}><Text style={{ paddingRight: 60}}>Nom : Jean</Text><Text >Prénom : Moulin </Text></View>
-     <Text>Date :23/09/20 </Text>
+     <View style={{ flexDirection: "row"}}><Text style={{ paddingRight: 60}}>Nom : {first_name}</Text><Text >Prénom : {name}</Text></View>
+     <Text>Date : {date}</Text>
      <View >
        <MapView style={styles.map} initialRegion={{
           latitude: 37.78825,

@@ -1,51 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, CheckBox, Image, Button } from 'react-native';
 
 const styles = StyleSheet.create({
-  recipeName: {
-    justifyContent: "space-between",
+  item: {
     marginBottom: 14,
     padding: 4,
-    "paddingLeft": 20,
+    paddingTop: 10,
     "paddingRight": 20,
-    backgroundColor: "#99DBAF",
-    flexDirection: "row",
+    paddingBottom: 10,
+    "paddingLeft": 20,
+    backgroundColor: "#F0F0F0",
     flex: 2,
     borderRadius: 10
   },
-  item: {
-    width: "100%",
-    padding: 10,
-    fontSize: 18,
-    height: 44,
+  cta: {
+    color: "#6A9FA0",
+    paddingVertical: 10
   },
+  name: {
+    fontWeight: "bold"
+  },
+  comment: {
+    paddingVertical: 6
+  }
 });
 
 
-export default function ({ data = [
-  { key: 'Tartes aux poires' },
-  { key: 'Tartes aux raisins' },
-  { key: 'Tartes au poireaux' },
-]}) {
+export default function ({ data = [ ] }) {
+  const [commentary, setCommentary] = useState([])
 
-  function gotToRecipe () {
-    console.log("gotToRecipe")
-  }
+  function addComment() {
+    console.log("addComment") 
+  } 
+
+  useEffect(()=>{
+    setCommentary(data.map((vals, key)=>{
+      return {
+        ...vals,
+        key: "commentary_"+key,
+      }
+    }))
+  }, [data])
 
   return (
-   <View style={{ paddingTop: 18 }}>
-     <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: 10, paddingTop: 10}}>Commentaires</Text>
-     <FlatList
-      data={data}
-      style={styles.card} 
-      renderItem={({ item }) => {
-        return (
-          <View onPress={gotToRecipe} style={styles.recipeName}>
-            <Text style={styles.item}>{item.key}</Text> 
-          </View>
-        )
-      }}
-    /> 
-   </View>
+    <View style={{ paddingTop: 18 }}>
+      <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: 4, paddingTop: 10 }}>Commentaires</Text>
+      <Text style={styles.cta} onPress={addComment} >Ajouter un commentaire</Text>
+      <FlatList
+        data={commentary}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.item}>
+              <Text style={styles.name} >{item.name}</Text>
+              <Text style={styles.comment}>{item.body}</Text>
+            </View>
+          )
+        }}
+      />
+    </View>
   )
 }
