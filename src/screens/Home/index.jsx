@@ -90,7 +90,7 @@ export default function Home({ navigation }) {
       
       <View>
         <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
-        <Text style={style.titleSection}> Liste des Desserts </Text>
+      <Text style={style.titleSection}> Liste des Desserts </Text>
         <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_base} renderItem={item_dessert} keyExtractor={data => data.id.toString()} />
       </View>
       <View style={{ flex: 1 }}>
