@@ -61,17 +61,19 @@ export default function ({ data, id }) {
 
   useEffect(() => {
     (async () => { 
-
       await AsyncStorage.setItem(`@commentary_${id}`, "")
       let commentaryToString = await AsyncStorage.getItem(`@commentary_${id}`) 
+      console.log(commentaryToString)
 
       if (!JSON.parse(commentaryToString).length || !JSON.parse(commentaryToString)) {
         await AsyncStorage.setItem(`@commentary_${id}`, JSON.stringify([ ...data ]))
         commentaryToString = JSON.stringify([ ...data ]) 
+        console.log("update")
       }
+
       setCommentary(JSON.parse(commentaryToString))
     })() 
-  }, [id])
+  }, [id, data])
 
   useEffect(() => { 
     async function setCommentaryInStore() {
@@ -84,7 +86,7 @@ export default function ({ data, id }) {
 
   function addComment() {
     let newCommentary = {
-      name: "me",
+      name: "Moi",
       body: message,
       key: "commentary_" + commentary.length + 1
     }
