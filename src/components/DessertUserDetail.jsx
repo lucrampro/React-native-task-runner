@@ -18,8 +18,8 @@ export default function ({ first_name, name, date, dessert}) {
   return (
    <View>
      <Text style={styles.title}>{dessert}</Text> 
-     <View style={{ flexDirection: "row"}}><Text style={{ paddingRight: 60}}>Nom : {first_name}</Text><Text >Prénom : {name}</Text></View>
-     <Text>Date : {date}</Text>
+     <View style={{ flexDirection: "row", marginBottom: 4}}><Text style={{ paddingRight: 60}}>Nom : {first_name}</Text><Text >Prénom : {name}</Text></View>
+     <Text style={{marginBottom: 10}}>Date : {date}</Text>
      <View >
        <MapView style={styles.map} initialRegion={{
           latitude: 37.78825,
