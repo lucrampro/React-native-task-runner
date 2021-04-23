@@ -107,8 +107,8 @@ export default function Home({ navigation }) {
               coordinate={marker.coordinate}
               // latitude={marker.coordinate.latitude}
               // longitude={}
-              title={"test"}
-              description={"test"}
+              title={marker.dessert}
+              description={marker.recipes[0]}
             />
           ))}
         </MapView>
