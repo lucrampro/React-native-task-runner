@@ -67,7 +67,7 @@ export default function ({ data, id }) {
       if (!commentaryToString) {
         await AsyncStorage.setItem(`@commentary_${id}`, JSON.stringify([ ...data ]))
         commentaryToString = JSON.stringify([ ...data ]) 
-        console.log("update")
+        
       }
 
       setCommentary(JSON.parse(commentaryToString))

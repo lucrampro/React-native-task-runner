@@ -61,7 +61,22 @@ const style = StyleSheet.create({
 
 export default function Home({ navigation }) {
 
+  function userSearch (user_search_value) {
+    
+    const regex = RegExp(user_search_value.toLowerCase())
+    
+    console.log(user_search_value.toLowerCase());
+    
+    user_search_value.length > 0 ?  setDataFilter(data_base.filter(info =>  regex.test(info.dessert.toLowerCase()) )) : setDataFilter(data_base)
+    
+  }
+
   const [data_base, setDataBase] = useState([])
+  const [data_filter, setDataFilter] = useState([])
+
+  useEffect(() => {
+    setDataFilter(data_base)
+  }, [data_base])
 
   useEffect(() => {
     fetch("https://my-json-server.typicode.com/melvinDebot/db-user/db_user")
@@ -89,9 +104,9 @@ export default function Home({ navigation }) {
     <View style={style.home}>
        
       <View>
-        <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
+        <TextInput onChangeText={userSearch} style={style.inputSearch} placeholder="Rechercher votre dessert" />
         <Text style={style.titleSection}> Liste des Desserts </Text>
-        <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_base} renderItem={item_dessert} keyExtractor={data => data.id.toString()} />
+        <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_filter} renderItem={item_dessert} keyExtractor={data => data.id.toString()} />
       </View>
       <View style={{ flex: 1 }}>
         <Text style={style.titleSection}> Carte </Text>
