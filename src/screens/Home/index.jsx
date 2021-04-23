@@ -1,5 +1,5 @@
-import React, { useEffect, useState} from 'react'
-import MapView from 'react-native-maps';
+import React, { useEffect, useState } from 'react'
+import MapView, { Marker } from 'react-native-maps';
 import { View, Text, StyleSheet, TextInput, FlatList, Button, TouchableOpacity } from 'react-native';
 // components
 import DessertCard from '../../components/dessert_card.jsx'
@@ -7,38 +7,32 @@ import DessertCard from '../../components/dessert_card.jsx'
 const data_desert = [
   {
     name: 'tarte au pomme',
-    imageUrl: require('../../../assets/apple.png'),
     id: '1'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: require('../../../assets/apple.png'),
     id: '2'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: require('../../../assets/apple.png'),
     id: '3'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: require('../../../assets/apple.png'),
     id: '4'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: require('../../../assets/apple.png'),
     id: '5'
   },
   {
     name: 'tarte au pomme',
-    imageUrl: require('../../../assets/apple.png'),
     id: '6'
   }
 ];
 
 const style = StyleSheet.create({
-  home : {
+  home: {
     backgroundColor: '#fefefe',
     paddingHorizontal: 10,
     paddingTop: 10,
@@ -65,43 +59,57 @@ const style = StyleSheet.create({
 })
 
 
-export default function Home ({ navigation }) {
+export default function Home({ navigation }) {
 
   const [data_base, setDataBase] = useState([])
-  
+
   useEffect(() => {
-    fetch("https://my-json-server.typicode.com/melvinDebot/db-user/db_user?")
-    .then((response) => response.json())
+    fetch("https://my-json-server.typicode.com/melvinDebot/db-user/db_user")
+      .then((response) => response.json())
       .then((val) => {
-        setDataBase(val);
-        
-        
-      }).catch(() => {})
-  }, [data_base])
+        setDataBase(val.map((data) => {
+          return {
+            ...data,
+            coordinate: {
+              latitude: data.lat,
+              longitude: data.lng, 
+            }
+          }
+        }));
+      }).catch(() => { })
+  }, [])
 
   const item_dessert = ({ item }) => (
-    <TouchableOpacity  onPress={() => navigation.navigate('Dessert')} >
-      <DessertCard  navigation={navigation} name={item.dessert} imageUrl={require('../../../assets/apple.png')}/>
+    <TouchableOpacity onPress={() => navigation.navigate('Dessert', { item })} >
+      <DessertCard navigation={navigation} name={item.dessert} imageUrl={item.icon_dessert} />
     </TouchableOpacity>
-  ); 
+  );
 
   return (
     <View style={style.home}>
       <View>
-      <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
+        <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
         <Text style={style.titleSection}> Liste des Desserts </Text>
-        <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_base} renderItem={item_dessert} keyExtractor={data=> data.id.toString()}/>
+        <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_base} renderItem={item_dessert} keyExtractor={data => data.id.toString()} />
       </View>
-
-        <View style={{flex: 1}}>
-          <Text style={style.titleSection}> Carte </Text>
-          <MapView style={style.map} initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }} />
-        </View>
+      <View style={{ flex: 1 }}>
+        <Text style={style.titleSection}> Carte </Text>
+        <MapView style={style.map} initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}>
+          {data_base.map((marker, index) => (
+            <Marker
+              key={index}
+              coordinate={marker.coordinate}
+              title={"test"}
+              description={"test"}
+            />
+          ))}
+        </MapView>
+      </View>
     </View>
   );
-} ;
+};

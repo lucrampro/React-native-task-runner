@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, Button, TouchableOpacity } from 'react-native';
 import { CheckBox } from 'react-native-elements'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const styles = StyleSheet.create({
   ingredient: {
@@ -36,21 +37,39 @@ const styles = StyleSheet.create({
 });
 
 
-export default function ({ data = [] }) {
+export default function ({ data = [], id }) {
 
   const [currentData, setCurrentData] = useState([])
 
   useEffect(() => {
-    setCurrentData(data.map((val, key) => {
-      return {
-        ...val,
-        key: "ingredieant_" + key,
-      }
-    }))
-  }, [data])
+    if (data.length) {
+      (async () => {
+        let ingredientToString = await AsyncStorage.getItem(`@ingredieant_${id}`)
+        if (!ingredientToString) {
+          await AsyncStorage.setItem(`@ingredieant_${id}`, JSON.stringify([...data.map((val, key) => {
+            return {
+              ...val,
+              key: "ingredieant_" + key,
+            }
+          })
+          ]))
+
+          ingredientToString = await AsyncStorage.getItem(`@ingredieant_${id}`)
+        }
+        setCurrentData(JSON.parse(ingredientToString))
+      })()
+
+    }
+  }, [id])
+
+  useEffect(() => {
+    async function setIngredientInStore() {
+      await AsyncStorage.setItem(`@ingredieant_${id}`, JSON.stringify(currentData))
+    }
+    setIngredientInStore()
+  }, [currentData])
 
   function checkedValue({ key }) {
-
     setCurrentData(
       currentData.map(checkbox => {
         if (checkbox.key == key) {
@@ -68,25 +87,26 @@ export default function ({ data = [] }) {
 
   return (
     <View>
-      <Text style={{ fontSize: 18, fontWeight: "bold" }}>Listes des ingrédients</Text>
-      <Text style={styles.cta} onPress={addIngredient} >Ajouter un ingrédient</Text>
+      <Text style={{ fontSize: 18, fontWeight: "bold", paddingTop: 14, paddingBottom: 14 }}>Listes des ingrédients</Text>
       <FlatList
         data={currentData}
         style={styles.card}
         renderItem={({ item }) => {
           return (
-            <View style={styles.ingredient}>
-              <View style={{ justifyContent: "center", flexDirection: "column" }}>
-                <CheckBox checked={item.completed} onPress={() => { checkedValue({ key: item.key }) }} style={styles.checkbox} ></CheckBox>
+            <TouchableOpacity onPress={() => { checkedValue({ key: item.key }) }}>
+              <View style={styles.ingredient} >
+                <View style={{ justifyContent: "center", flexDirection: "column" }}>
+                  <CheckBox onPress={() => { checkedValue({ key: item.key }) }} checked={item.completed} style={styles.checkbox} ></CheckBox>
+                </View>
+                <Text style={styles.item}>{item.title}</Text>
+                <View style={{
+                  justifyContent: "space-between", flexDirection: "row", width: 70, alignItems: "center"
+                }}>
+                  <Image style={styles.icon} source={require('../../assets/modifier-icon.svg')}></Image>
+                  <Image style={styles.icon} source={require('../../assets/remove-icon.svg')} ></Image>
+                </View>
               </View>
-              <Text style={styles.item}>{item.title}</Text>
-              <View style={{
-                justifyContent: "space-between", flexDirection: "row", width: 70, alignItems: "center"
-              }}>
-                <Image style={styles.icon} source={require('../../assets/modifier-icon.svg')}></Image>
-                <Image style={styles.icon} source={require('../../assets/remove-icon.svg')} ></Image>
-              </View>
-            </View>
+            </TouchableOpacity>
           )
         }}
       />

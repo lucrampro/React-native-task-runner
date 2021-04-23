@@ -23,7 +23,7 @@ export default function ({ data = [ ] }) {
 
   return (
     <View>
-      <Text style={{ fontSize: 18, fontWeight: "bold" }}>Recettes</Text>
+      <Text style={{ fontSize: 18, fontWeight: "bold", paddingTop: 14, paddingBottom: 14 }}>Recettes</Text>
       <FlatList
         data={recipes}
         renderItem={({ item }) => {

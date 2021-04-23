@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
 });
 
 
-export default function ({ first_name, name, date}) { 
+export default function ({ first_name, name, date, dessert}) { 
   return (
    <View>
-     <Text style={styles.title}>Tartes aux pommes</Text> 
+     <Text style={styles.title}>{dessert}</Text> 
      <View style={{ flexDirection: "row"}}><Text style={{ paddingRight: 60}}>Nom : {first_name}</Text><Text >Prénom : {name}</Text></View>
      <Text>Date : {date}</Text>
      <View >

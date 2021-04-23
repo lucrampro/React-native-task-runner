@@ -4,12 +4,11 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 const exampleImage = require('../../assets/apple.png');
 // const exampleImageUri = Image.resolveAssetSource(exampleImage).uri
 
-export default function DessertCard (props) {
-  
-  return(
+export default function DessertCard(props) { 
+  return (
     <View onPress={() => props.navigation.navigate('Dessert')} style={style.Card}>
       <View style={style.containerImg}>
-        <Image style={style.image} source={props.imageUrl} />
+        <Image style={style.image} source={{ uri: props.imageUrl }}/>
       </View>
       <Text style={style.text}> {props.name} </Text>
     </View>
@@ -23,7 +22,7 @@ const style = StyleSheet.create({
     height: 130,
     padding: 10,
     borderRadius: 16,
-    alignItems:  'center',
+    alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10
   },
@@ -34,10 +33,10 @@ const style = StyleSheet.create({
     height: 'auto',
     padding: 5,
     borderRadius: 8,
-    alignItems: 'center'
-
+    alignItems: 'center' 
   },
   image: {
+    width: 30, 
     flex: 1,
     resizeMode: 'contain',
   },

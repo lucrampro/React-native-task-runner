@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, Text, View, FlatList, CheckBox, Image } from 'react-native';
 import IngredientsList from '../../components/ingredientsList';
 import DessertUserDetail from '../../components/DessertUserDetail'
@@ -10,39 +10,27 @@ import CommentaryList from '../../components/commentaryList'
 const styles = StyleSheet.create({
   container: {
     width: "100%",
+    paddingTop: 20,
     paddingHorizontal: 20,
-    marginBottom: 40,
+    paddingBottom: 40,
   },
 });
 
-export default function () {
-
-  const [dessert, setDessert] = useState({ })
-
-    console.log("ici2")
+export default  (props) => { 
+  let [dessert, setDessert] = useState({})
 
   useEffect(() => { 
-
-    console.log("ici")
-
-    fetch("https://my-json-server.typicode.com/melvinDebot/db-user/db_user?id=1")
-      .then((response) => response.json())
-      .then((val) => {
-        setDessert(val[0])
-        console.log(val)
-      })
-      .catch((e) => console.error) 
-
-  }, [])
+    setDessert(props.route.params.item)
+  }, [props.route])
 
   return (
     <ScrollView style={styles.container}>
-      <DessertUserDetail date={dessert.date} first_name={dessert['first_name']} name={dessert['name']}></DessertUserDetail>
-      <IngredientsList data={dessert.todos} />
+      <DessertUserDetail id="" date={dessert.date} first_name={dessert['first_name']} dessert={dessert.dessert} name={dessert['name']}></DessertUserDetail>
+      <IngredientsList id={dessert.id} id={dessert.id} data={dessert.todos} />
       <PictureListHorizontal data={dessert.slider_img} />
       <RecipesList data={dessert.recipes} />
-      <SuggestedRecipes data={dessert.comments}/>
-      <CommentaryList data={dessert.comments}/>
+      {/* <SuggestedRecipes data={dessert.comments}/> */}
+      <CommentaryList id={dessert.id} data={dessert.comments}/>
     </ScrollView>
   )
 }

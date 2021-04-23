@@ -32,7 +32,7 @@ export default function ({ data = [] }) {
 
   return (
     <View>
-      <Text style={{ fontSize: 18, fontWeight: "bold" }}>Photos du desserts</Text>
+      <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: 6 }}>Photos du desserts</Text>
       <FlatList
         data={pictures}
         styles={styles.container}
