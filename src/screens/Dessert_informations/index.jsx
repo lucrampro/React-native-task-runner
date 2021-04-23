@@ -24,7 +24,7 @@ export default  (props) => {
   }, [props.route])
 
   return (
-    <ScrollView showsHorizontalScrollIndicator={false} style={styles.container}>
+    <ScrollView  style={styles.container}>
       <DessertUserDetail id="" date={dessert.date} first_name={dessert['first_name']} dessert={dessert.dessert} name={dessert['name']}></DessertUserDetail>
       <IngredientsList id={dessert.id} id={dessert.id} data={dessert.todos} />
       <PictureListHorizontal data={dessert.slider_img} />

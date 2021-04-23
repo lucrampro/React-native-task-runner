@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MapView, { Marker } from 'react-native-maps';
-import { View, Text, StyleSheet, TextInput, FlatList, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, FlatList, Button, TouchableOpacity, Image } from 'react-native';
 // components
 import DessertCard from '../../components/dessert_card.jsx'
 
@@ -87,10 +87,10 @@ export default function Home({ navigation }) {
 
   return (
     <View style={style.home}>
-      
+       
       <View>
         <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
-      <Text style={style.titleSection}> Liste des Desserts </Text>
+        <Text style={style.titleSection}> Liste des Desserts </Text>
         <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={data_base} renderItem={item_dessert} keyExtractor={data => data.id.toString()} />
       </View>
       <View style={{ flex: 1 }}>

@@ -1,18 +1,17 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home/index';
 import Dessert from '../screens/Dessert_informations/index'
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 
  export default function MyTabs() {
   return (
-    <Tab.Navigator>
-
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Dessert" component={Dessert} />
-    </Tab.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Accueil" component={Home} />
+      <Stack.Screen name="Dessert" component={Dessert} />
+    </Stack.Navigator>
   );
 }
