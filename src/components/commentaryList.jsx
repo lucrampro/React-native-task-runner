@@ -63,9 +63,8 @@ export default function ({ data, id }) {
     (async () => { 
       await AsyncStorage.setItem(`@commentary_${id}`, "")
       let commentaryToString = await AsyncStorage.getItem(`@commentary_${id}`) 
-      console.log(commentaryToString)
 
-      if (!JSON.parse(commentaryToString).length || !JSON.parse(commentaryToString)) {
+      if (!commentaryToString) {
         await AsyncStorage.setItem(`@commentary_${id}`, JSON.stringify([ ...data ]))
         commentaryToString = JSON.stringify([ ...data ]) 
         console.log("update")
