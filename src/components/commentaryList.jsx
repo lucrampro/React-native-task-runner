@@ -60,24 +60,31 @@ export default function ({ data, id }) {
   const [message, setMessage] = useState("")
 
   useEffect(() => {
-    (async () => { 
+    (async () => {
       await AsyncStorage.setItem(`@commentary_${id}`, "")
-      let commentaryToString = await AsyncStorage.getItem(`@commentary_${id}`) 
+      let commentaryToString = await AsyncStorage.getItem(`@commentary_${id}`)
 
       if (!commentaryToString) {
-        await AsyncStorage.setItem(`@commentary_${id}`, JSON.stringify([ ...data ]))
-        commentaryToString = JSON.stringify([ ...data ]) 
+        let newData = [...data.map((currentCommentary, key) => {
+          return {
+            ...currentCommentary,
+            key: "commentary_" + key + Math.random() * 9999,
+          }
+        })
+        ]
+        await AsyncStorage.setItem(`@commentary_${id}`, JSON.stringify(newData))
+        commentaryToString = JSON.stringify(newData)
         console.log("update")
       }
 
       setCommentary(JSON.parse(commentaryToString))
-    })() 
+    })()
   }, [id, data])
 
-  useEffect(() => { 
+  useEffect(() => {
     async function setCommentaryInStore() {
       await AsyncStorage.setItem(`@commentary_${id}`, JSON.stringify(commentary))
-    } 
+    }
     setCommentaryInStore()
   }, [commentary])
 
@@ -87,7 +94,7 @@ export default function ({ data, id }) {
     let newCommentary = {
       name: "Moi",
       body: message,
-      key: "commentary_" + commentary.length + 1
+      key: "commentary_" + commentary.length + Math.random() * 9999,
     }
 
     setCommentary([
@@ -123,7 +130,7 @@ export default function ({ data, id }) {
               ></TextInput>
             </View>
             <View style={{ width: "100%", flexDirection: "row" }}>
-              <Button title="Annuler"  color="gray" onPress={() => setModalIsOpen(false)} />
+              <Button title="Annuler" color="gray" onPress={() => setModalIsOpen(false)} />
               <Button title="Ajouter" onPress={addComment} />
             </View>
           </View>

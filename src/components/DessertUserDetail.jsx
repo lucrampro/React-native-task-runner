@@ -26,7 +26,7 @@ export default function ({ first_name, name, date, dessert, data }) {
     })
   }, [data.coordinate])
 
-  console.log(data.coordinate)
+  console.log(data)
   return (
     <View>
       <Text style={styles.title}>{dessert}</Text>
@@ -42,10 +42,7 @@ export default function ({ first_name, name, date, dessert, data }) {
           <MapView.Marker
               key={data.id}
               coordinate={coordinate}
-              // latitude={coordinate.latitude}
-              // longitude={}
-              title={"test"}
-              description={"test"}
+              title={dessert}
             />
         </MapView>
       </View>
