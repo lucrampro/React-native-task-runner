@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default function ({ data = [] }) {
+export default function ({ data = [], navigation}) {
 
   const [pictures, setPictures] = useState([])
 
@@ -27,12 +27,13 @@ export default function ({ data = [] }) {
         key
       }
     }))
-
+    console.log(navigation)
   }, [data])
 
   return (
     <View>
-      <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: 6 }}>Photos du desserts</Text>
+      <Text style={{ fontSize: 18, fontWeight: "bold", paddingBottom: 6}}>Photos du desserts</Text>
+      <Text onPress={()=>{navigation.navigate('Home')}} >voir la galerie</Text> 
       <FlatList
         data={pictures}
         styles={styles.container}

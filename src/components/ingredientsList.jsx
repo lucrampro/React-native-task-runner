@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default function ({ data = [], id }) {
+export default function ({ data = [], id, navigation }) {
 
   const [currentData, setCurrentData] = useState([])
 
@@ -87,7 +87,8 @@ export default function ({ data = [], id }) {
 
   return (
     <View>
-      <Text style={{ fontSize: 18, fontWeight: "bold", paddingTop: 14, paddingBottom: 14 }}>Listes des ingrédients</Text>
+      <Text style={{ fontSize: 18, fontWeight: "bold", paddingTop: 14, paddingBottom: 6 }}>Listes des ingrédients</Text>
+      <Text style={{paddingBottom: 6}}  >Ajouter un commentaire</Text>
       <FlatList
         data={currentData}
         style={styles.card}
