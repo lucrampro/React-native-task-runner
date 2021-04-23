@@ -71,8 +71,8 @@ export default function Home({ navigation }) {
           return {
             ...data,
             coordinate: {
-              latitude: data.lat,
-              longitude: data.lng, 
+              latitude: Number(data.geo.lat),
+              longitude: Number(data.geo.lng), 
             }
           }
         }));
@@ -87,6 +87,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={style.home}>
+      
       <View>
         <TextInput style={style.inputSearch} placeholder="Rechercher votre dessert" />
         <Text style={style.titleSection}> Liste des Desserts </Text>
@@ -94,16 +95,18 @@ export default function Home({ navigation }) {
       </View>
       <View style={{ flex: 1 }}>
         <Text style={style.titleSection}> Carte </Text>
-        <MapView style={style.map} initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+        <MapView zoomControlEnabled={true} minZoomLevel={0} style={style.map} initialRegion={{
+          latitude: 48.866667,
+          longitude: 2.333333,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}>
           {data_base.map((marker, index) => (
-            <Marker
+            <MapView.Marker
               key={index}
               coordinate={marker.coordinate}
+              // latitude={marker.coordinate.latitude}
+              // longitude={}
               title={"test"}
               description={"test"}
             />

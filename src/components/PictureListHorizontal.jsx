@@ -36,6 +36,7 @@ export default function ({ data = [] }) {
       <FlatList
         data={pictures}
         styles={styles.container}
+        showsHorizontalScrollIndicator={false}
         horizontal={true}
         renderItem={({ item }) => {
           return (
