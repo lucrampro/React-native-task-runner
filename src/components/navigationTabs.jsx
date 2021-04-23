@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
     <Stack.Navigator>
       <Stack.Screen name="Accueil" component={Home} />
       <Stack.Screen name="Dessert" component={Dessert} />
-      <Stack.Screen name="Picture" component={Picture} />
+      <Stack.Screen name="Photos" component={Picture} />
     </Stack.Navigator>
   );
 }
